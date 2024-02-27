@@ -14,13 +14,27 @@ module.exports = {
       },
       images: {
         type: DataTypes.TEXT,
-        get: getArray('images'),
-        set: setArray('images')
+        // get: getArray('images'),
+        // set: setArray('images')
+        get() {
+          const rawValue = this.getDataValue('images');
+          return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
+        },
+        set(value) {
+          this.setDataValue('images', JSON.parse(value));
+        }
       },
       imagesId: {
         type: DataTypes.TEXT,
-        get: getArray('imagesId'),
-        set: setArray('imagesId')
+        // get: getArray('imagesId'),
+        // set: setArray('imagesId')
+        get() {
+          const rawValue = this.getDataValue('imagesId');
+          return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
+        },
+        set(value) {
+          this.setDataValue('imagesId', JSON.parse(value));
+        }
       },
       details: {
         type: DataTypes.STRING

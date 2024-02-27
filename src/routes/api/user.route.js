@@ -32,8 +32,8 @@ const routes = express.Router();
 
 routes.get(
   '/',
-  checkLoggedInUser,
-  roles('SUPER_ADMIN', 'MANAGER'),
+  // checkLoggedInUser,
+  // roles('SUPER_ADMIN', 'MANAGER'),
   async (req, res) => {
     await UserController.getAllUsers(req, res);
   }

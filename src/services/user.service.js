@@ -43,7 +43,7 @@ export default class UserService {
     return false;
   }
 
-  async userLogin(data, res) {
+  async userLogin(data) {
     const userExist = await User.findOne({
       where: { email: data }
     });

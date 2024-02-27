@@ -1,5 +1,5 @@
 module.exports = {
-  getArray: (name) => () => JSON.parse(this.getDataValue(name) || '[]'),
+  getArray: (name) => () => JSON.parse(this?.getDataValue(name) || '[]'),
   setArray: (name) => (value) => {
     if (typeof value === 'string') {
       try {

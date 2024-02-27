@@ -59,19 +59,10 @@ export default class UserController {
     try {
       const { first_name, last_name, email, password, role_id, location_id } =
         req.body;
-      const newUser = await this.userService.createUser(
-        {
-          first_name,
-          last_name,
-          email,
-          password: hashPassword(password),
-          role_id: 4,
-          location_id
-        },
-        res
-      );
-      const token = generateToken({ id: newUser.id }, '1d');
-      await Profiles.createProfile({ user_id: newUser.id });
+
+      console.log(req.body);
+
+      const token = generateToken({ email: email }, '1d');
       const text = `
          Hello, thanks for registering on Barefoot Nomad site.
          Please copy and paste the address below into address bar to verify your account.
@@ -97,7 +88,27 @@ export default class UserController {
           </table>
       `;
       const html = message(code);
-      await nodemailer(newUser.email, 'Email Verification', text, html);
+
+      try {
+        await nodemailer(email, 'Email Verification', text, html);
+      } catch (error) {
+        throw new Error(error);
+      }
+
+      const newUser = await this.userService.createUser(
+        {
+          first_name,
+          last_name,
+          email,
+          password: hashPassword(password),
+          role_id: 4,
+          location_id
+        },
+        res
+      );
+
+      await Profiles.createProfile({ user_id: newUser.id });
+
       return res.status(201).json({
         status: 201,
         message:
@@ -118,11 +129,11 @@ export default class UserController {
 
       const userInfo = decodeToken(token);
 
-      const userId = userInfo.id;
+      const userId = userInfo.email;
 
-      const user = await this.userService.getUserId(userId);
+      const user = await this.userService.userLogin(userId);
 
-      await user.update({ isVerified: true }, { where: { id: userId } });
+      await user.update({ isVerified: true }, { where: { id: user?.id } });
       return res.status(200).json({
         status: 200,
         message: 'Your email has been verified successfully'
@@ -141,6 +152,7 @@ export default class UserController {
         req.body.password,
         user.password
       );
+      console.log({ validation, user });
       if (validation) {
         const token = await generateToken(
           {

@@ -23,7 +23,7 @@ module.exports = {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('images', JSON.parse(value));
+          this.setDataValue('images', JSON.stringify(value));
         }
       },
       imagesId: {
@@ -34,7 +34,7 @@ module.exports = {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('imagesId', JSON.parse(value));
+          this.setDataValue('imagesId', JSON.stringify(value));
         }
       },
       location_id: {
@@ -48,7 +48,7 @@ module.exports = {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('services', JSON.parse(value));
+          this.setDataValue('services', JSON.stringify(value));
         }
       },
       amenities: {
@@ -59,7 +59,7 @@ module.exports = {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('amenities', JSON.parse(value));
+          this.setDataValue('amenities', JSON.stringify(value));
         }
       },
       user_id: {
@@ -73,7 +73,7 @@ module.exports = {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('rates', JSON.parse(value));
+          this.setDataValue('rates', JSON.stringify(value));
         }
       },
       createdAt: {

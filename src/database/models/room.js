@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('images', JSON.parse(value));
+          this.setDataValue('images', JSON.stringify(value));
         }
       },
       imagesId: {
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
           return rawValue ? JSON.parse(rawValue) : JSON.parse('[]');
         },
         set(value) {
-          this.setDataValue('imagesId', JSON.parse(value));
+          this.setDataValue('imagesId', JSON.stringify(value));
         }
       },
       details: DataTypes.STRING,

@@ -17,9 +17,6 @@ export const validateAccommodationId = async (req, res, next) => {
   next();
 };
 
-
-      
-
 export const checkUserCreatedComment = async (req, res, next) => {
   const { id } = req.user;
   const { commentId } = req.params;

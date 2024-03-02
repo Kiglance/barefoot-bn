@@ -3,7 +3,10 @@ import multer from 'multer';
 const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     /* istanbul ignore next */
-    cb(null, `${new Date().toISOString()}-${file.originalname}`.replace(/:/g, '-'));
+    cb(
+      null,
+      `${new Date().toISOString()}-${file.originalname}`.replace(/:/g, '-')
+    );
   }
 });
 
@@ -24,7 +27,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
   storage,
-  limits: { fileSize: 1024 * 1024 },
+  limits: { fileSize: 4 * 1024 * 1024 },
   fileFilter
 });
 

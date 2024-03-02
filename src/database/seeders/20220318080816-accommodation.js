@@ -23,12 +23,10 @@ module.exports = {
           'swimming pool'
         ]),
         user_id: 2,
-        amenities: JSON.stringify(
-          JSON.stringify([
-            '5 star hotel with swimming pool and gym',
-            'And yes we have the best cookies'
-          ])
-        ),
+        amenities: JSON.stringify([
+          '5 star hotel with swimming pool and gym',
+          'And yes we have the best cookies'
+        ]),
         createdAt: new Date(),
         updatedAt: new Date()
       },

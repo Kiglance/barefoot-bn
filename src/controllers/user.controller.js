@@ -60,8 +60,6 @@ export default class UserController {
       const { first_name, last_name, email, password, role_id, location_id } =
         req.body;
 
-      console.log(req.body);
-
       const token = generateToken({ email: email }, '1d');
       const text = `
          Hello, thanks for registering on Barefoot Nomad site.
@@ -152,7 +150,6 @@ export default class UserController {
         req.body.password,
         user.password
       );
-      console.log({ validation, user });
       if (validation) {
         const token = await generateToken(
           {
@@ -221,7 +218,6 @@ export default class UserController {
       }
     } catch (error) {
       /* istanbul ignore next */
-      console.log(error);
       return res.status(500).json({ error: error.message });
     }
   }
@@ -425,7 +421,6 @@ export default class UserController {
         });
       }
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         error: error.message,
         message: 'error occured while logging you out'

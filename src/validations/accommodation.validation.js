@@ -35,7 +35,9 @@ const accommodationValidation = async (req, res, next) => {
     next();
   } catch (err) {
     /* istanbul ignore next */
-    return res.status(500).json({ message: 'internal server error' });
+    return res
+      .status(500)
+      .json({ message: err.message || 'internal server error' });
   }
 };
 
